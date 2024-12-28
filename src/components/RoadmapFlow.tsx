@@ -10,6 +10,7 @@ import {
   addEdge,
   Node,
   Edge,
+  MarkerType,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
@@ -138,36 +139,252 @@ const initialNodes: Node[] = [
 ];
 
 const initialEdges: Edge[] = [
-  // Pattern Connections
-  { id: 'e-start-p1', source: 'start', target: 'p1', animated: true },
-  { id: 'e-start-p2', source: 'start', target: 'p2', animated: true },
+  // Pattern Connections with animated edges and markers
+  { 
+    id: 'e-start-p1', 
+    source: 'start', 
+    target: 'p1', 
+    animated: true,
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-start-p2', 
+    source: 'start', 
+    target: 'p2', 
+    animated: true,
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
 
-  // Counting Pattern Paths
-  { id: 'e-p1-c1', source: 'p1', target: 'c1' },
-  { id: 'e-p1-f1', source: 'p1', target: 'f1' },
-  { id: 'e-p1-w1', source: 'p1', target: 'w1' },
-  { id: 'e-c1-c2', source: 'c1', target: 'c2' },
-  { id: 'e-c2-c3', source: 'c2', target: 'c3' },
-  { id: 'e-f1-f2', source: 'f1', target: 'f2' },
-  { id: 'e-f2-f3', source: 'f2', target: 'f3' },
-  { id: 'e-w1-w2', source: 'w1', target: 'w2' },
-  { id: 'e-w2-w3', source: 'w2', target: 'w3' },
+  // Counting Pattern Paths with markers
+  { 
+    id: 'e-p1-c1', 
+    source: 'p1', 
+    target: 'c1',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-p1-f1', 
+    source: 'p1', 
+    target: 'f1',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-p1-w1', 
+    source: 'p1', 
+    target: 'w1',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-c1-c2', 
+    source: 'c1', 
+    target: 'c2',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-c2-c3', 
+    source: 'c2', 
+    target: 'c3',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-f1-f2', 
+    source: 'f1', 
+    target: 'f2',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-f2-f3', 
+    source: 'f2', 
+    target: 'f3',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-w1-w2', 
+    source: 'w1', 
+    target: 'w2',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-w2-w3', 
+    source: 'w2', 
+    target: 'w3',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
 
-  // Monotonic Pattern Paths
-  { id: 'e-p2-n1', source: 'p2', target: 'n1' },
-  { id: 'e-p2-m1', source: 'p2', target: 'm1' },
-  { id: 'e-n1-n2', source: 'n1', target: 'n2' },
-  { id: 'e-n2-n3', source: 'n2', target: 'n3' },
-  { id: 'e-m1-m2', source: 'm1', target: 'm2' },
-  { id: 'e-m2-m3', source: 'm2', target: 'm3' },
+  // Monotonic Pattern Paths with markers
+  { 
+    id: 'e-p2-n1', 
+    source: 'p2', 
+    target: 'n1',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-p2-m1', 
+    source: 'p2', 
+    target: 'm1',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-n1-n2', 
+    source: 'n1', 
+    target: 'n2',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-n2-n3', 
+    source: 'n2', 
+    target: 'n3',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-m1-m2', 
+    source: 'm1', 
+    target: 'm2',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
+  { 
+    id: 'e-m2-m3', 
+    source: 'm2', 
+    target: 'm3',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+  },
 
-  // Cross Pattern Learning
-  { id: 'e-w2-m1', source: 'w2', target: 'm1' },
-  { id: 'e-f2-n1', source: 'f2', target: 'n1' },
+  // Cross Pattern Learning with markers
+  { 
+    id: 'e-w2-m1', 
+    source: 'w2', 
+    target: 'm1',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+    style: { stroke: '#9ca3af' },
+  },
+  { 
+    id: 'e-f2-n1', 
+    source: 'f2', 
+    target: 'n1',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+    style: { stroke: '#9ca3af' },
+  },
 
-  // Parallel Learning Paths
-  { id: 'e-c2-f2', source: 'c2', target: 'f2' },
-  { id: 'e-w2-f3', source: 'w2', target: 'f3' },
+  // Parallel Learning Paths with markers
+  { 
+    id: 'e-c2-f2', 
+    source: 'c2', 
+    target: 'f2',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+    style: { stroke: '#9ca3af' },
+  },
+  { 
+    id: 'e-w2-f3', 
+    source: 'w2', 
+    target: 'f3',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#9ca3af',
+    },
+    style: { stroke: '#9ca3af' },
+  },
 ];
 
 const RoadmapFlow = () => {
