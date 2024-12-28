@@ -99,3 +99,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .start-node {
+    @apply bg-gradient-to-br from-blue-500 to-blue-600 text-white font-semibold rounded-lg border-2 border-blue-400 shadow-lg;
+  }
+
+  .pattern-node {
+    @apply bg-gradient-to-br from-indigo-500 to-indigo-600 text-white font-medium rounded-lg border-2 border-indigo-400 shadow-lg;
+  }
+
+  .subpattern-node {
+    @apply bg-gradient-to-br from-cyan-500 to-cyan-600 text-white font-medium rounded-lg border-2 border-cyan-400 shadow-lg;
+  }
+}
