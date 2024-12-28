@@ -18,7 +18,7 @@ const initialNodes: Node[] = [
   { 
     id: 'start',
     data: { label: 'Level 1: Foundation' },
-    position: { x: 500, y: 0 },
+    position: { x: 450, y: 50 },
     className: 'start-node'
   },
 
@@ -26,13 +26,13 @@ const initialNodes: Node[] = [
   { 
     id: 'p1',
     data: { label: '1. Counting Pattern' },
-    position: { x: 250, y: 150 },
+    position: { x: 200, y: 180 },
     className: 'pattern-node'
   },
   { 
     id: 'p2',
     data: { label: '2. Monotonic Stack/Queue' },
-    position: { x: 750, y: 150 },
+    position: { x: 700, y: 200 },
     className: 'pattern-node'
   },
 
@@ -40,19 +40,19 @@ const initialNodes: Node[] = [
   { 
     id: 'c1',
     data: { label: '1A.1 Single Value Counter' },
-    position: { x: 0, y: 300 },
+    position: { x: 50, y: 280 },
     className: 'subpattern-node'
   },
   { 
     id: 'c2',
     data: { label: '1A.2 Conditional Counter' },
-    position: { x: 0, y: 450 },
+    position: { x: -50, y: 400 },
     className: 'subpattern-node'
   },
   { 
     id: 'c3',
     data: { label: '1A.3 Multi-Value Counter' },
-    position: { x: 0, y: 600 },
+    position: { x: 80, y: 520 },
     className: 'subpattern-node'
   },
 
@@ -60,19 +60,19 @@ const initialNodes: Node[] = [
   { 
     id: 'f1',
     data: { label: '1B.1 Frequency Map' },
-    position: { x: 250, y: 300 },
+    position: { x: 280, y: 320 },
     className: 'subpattern-node'
   },
   { 
     id: 'f2',
     data: { label: '1B.2 Group Frequency' },
-    position: { x: 250, y: 450 },
+    position: { x: 180, y: 450 },
     className: 'subpattern-node'
   },
   { 
     id: 'f3',
     data: { label: '1B.3 Freq of Frequencies' },
-    position: { x: 250, y: 600 },
+    position: { x: 320, y: 580 },
     className: 'subpattern-node'
   },
 
@@ -80,19 +80,19 @@ const initialNodes: Node[] = [
   { 
     id: 'w1',
     data: { label: '1C.1 Fixed Window' },
-    position: { x: 500, y: 300 },
+    position: { x: 480, y: 280 },
     className: 'subpattern-node'
   },
   { 
     id: 'w2',
     data: { label: '1C.2 Dynamic Window' },
-    position: { x: 500, y: 450 },
+    position: { x: 580, y: 420 },
     className: 'subpattern-node'
   },
   { 
     id: 'w3',
     data: { label: '1C.3 Multi-Condition' },
-    position: { x: 500, y: 600 },
+    position: { x: 450, y: 550 },
     className: 'subpattern-node'
   },
 
@@ -100,19 +100,19 @@ const initialNodes: Node[] = [
   { 
     id: 'n1',
     data: { label: '2A.1 Next Greater Element' },
-    position: { x: 750, y: 300 },
+    position: { x: 780, y: 320 },
     className: 'subpattern-node'
   },
   { 
     id: 'n2',
     data: { label: '2A.2 Previous Greater' },
-    position: { x: 750, y: 450 },
+    position: { x: 680, y: 450 },
     className: 'subpattern-node'
   },
   { 
     id: 'n3',
     data: { label: '2A.3 Circular Array' },
-    position: { x: 750, y: 600 },
+    position: { x: 820, y: 580 },
     className: 'subpattern-node'
   },
 
@@ -120,19 +120,19 @@ const initialNodes: Node[] = [
   { 
     id: 'm1',
     data: { label: '2B.1 Sliding Window Max' },
-    position: { x: 1000, y: 300 },
+    position: { x: 980, y: 280 },
     className: 'subpattern-node'
   },
   { 
     id: 'm2',
     data: { label: '2B.2 Window Difference' },
-    position: { x: 1000, y: 450 },
+    position: { x: 1080, y: 420 },
     className: 'subpattern-node'
   },
   { 
     id: 'm3',
     data: { label: '2B.3 Dynamic Window Sum' },
-    position: { x: 1000, y: 600 },
+    position: { x: 950, y: 550 },
     className: 'subpattern-node'
   },
 ];
