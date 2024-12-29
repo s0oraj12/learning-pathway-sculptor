@@ -6,9 +6,11 @@ export const SceneSetup = () => {
   const { camera } = useThree();
 
   useEffect(() => {
-    camera.position.z = 15;
-    camera.position.y = 5;
-    camera.lookAt(0, 0, 0);
+    if (camera) {
+      camera.position.z = 15;
+      camera.position.y = 5;
+      camera.lookAt(0, 0, 0);
+    }
   }, [camera]);
 
   return (

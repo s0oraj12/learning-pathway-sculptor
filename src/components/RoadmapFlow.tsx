@@ -42,7 +42,7 @@ const RoadmapFlowInner = () => {
         </Canvas>
       </div>
 
-      {/* React Flow Layer with transparent background */}
+      {/* React Flow Layer */}
       <div className="absolute inset-0 z-10">
         <ReactFlow
           nodes={nodes}
