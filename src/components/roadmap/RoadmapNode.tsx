@@ -1,42 +1,27 @@
-import { useRef } from 'react';
-import { Html } from '@react-three/drei';
-import { RoadmapNode as RoadmapNodeType } from '../../types/roadmap';
-import * as THREE from 'three';
+import { memo } from 'react';
+import { Handle, Position } from '@xyflow/react';
 
 interface RoadmapNodeProps {
-  node: RoadmapNodeType;
+  data: {
+    label: string;
+  };
   type: 'start' | 'pattern' | 'subpattern';
 }
 
-export const RoadmapNode: React.FC<RoadmapNodeProps> = ({ node, type }) => {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  const colors = {
-    start: '#3B82F6',
-    pattern: '#8B5CF6',
-    subpattern: '#06B6D4'
-  };
-
-  const position = new THREE.Vector3(node.position.x / 100, -node.position.y / 100, 0);
+const RoadmapNode = ({ data, type }: RoadmapNodeProps) => {
+  const nodeClass = type === 'start' 
+    ? 'start-node' 
+    : type === 'pattern' 
+      ? 'pattern-node' 
+      : 'subpattern-node';
 
   return (
-    <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[0.3, 32, 32]} />
-      <meshStandardMaterial
-        color={colors[type]}
-        roughness={0.5}
-        metalness={0.2}
-      />
-      <Html
-        center
-        distanceFactor={15}
-        occlude
-        transform
-      >
-        <div className="bg-white/90 backdrop-blur-sm p-2 rounded-lg shadow-lg">
-          <h3 className="text-sm font-bold">{node.data.label}</h3>
-        </div>
-      </Html>
-    </mesh>
+    <div className={`${nodeClass} px-4 py-2 min-w-[150px]`}>
+      <Handle type="target" position={Position.Top} />
+      <div className="font-medium">{data.label}</div>
+      <Handle type="source" position={Position.Bottom} />
+    </div>
   );
 };
+
+export default memo(RoadmapNode);

@@ -1,17 +1,36 @@
-import { RoadmapEdge } from './RoadmapEdge';
-import { RoadmapEdge as RoadmapEdgeType, RoadmapNode } from '../../types/roadmap';
+import { memo } from 'react';
+import { BaseEdge, EdgeProps, getBezierPath } from '@xyflow/react';
 
-interface EdgesLayerProps {
-  edges: RoadmapEdgeType[];
-  nodes: RoadmapNode[];
-}
+const EdgesLayer = ({
+  sourceX,
+  sourceY,
+  targetX,
+  targetY,
+  sourcePosition,
+  targetPosition,
+  style = {},
+  markerEnd,
+}: EdgeProps) => {
+  const [edgePath] = getBezierPath({
+    sourceX,
+    sourceY,
+    sourcePosition,
+    targetX,
+    targetY,
+    targetPosition,
+  });
 
-export const EdgesLayer = ({ edges, nodes }: EdgesLayerProps) => {
   return (
-    <group>
-      {edges.map((edge) => (
-        <RoadmapEdge key={edge.id} edge={edge} nodes={nodes} />
-      ))}
-    </group>
+    <BaseEdge
+      path={edgePath}
+      markerEnd={markerEnd}
+      style={{
+        ...style,
+        strokeWidth: 2,
+        stroke: '#4a5568',
+      }}
+    />
   );
 };
+
+export default memo(EdgesLayer);
