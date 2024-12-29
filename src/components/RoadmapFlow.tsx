@@ -19,16 +19,13 @@ import { RoadmapNode } from './roadmap/RoadmapNode';
 import { RoadmapEdge } from './roadmap/RoadmapEdge';
 import { RoadmapNode as RoadmapNodeType, RoadmapEdge as RoadmapEdgeType } from '../types/roadmap';
 
-const initialNodes: Node[] = [
-  // Start Node
+const initialNodes: RoadmapNodeType[] = [
   { 
     id: 'start',
     data: { label: 'Level 1: Foundation' },
     position: { x: 450, y: 50 },
     className: 'start-node'
   },
-
-  // Pattern Nodes
   { 
     id: 'p1',
     data: { label: '1. Counting Pattern' },
@@ -41,8 +38,6 @@ const initialNodes: Node[] = [
     position: { x: 700, y: 200 },
     className: 'pattern-node'
   },
-
-  // Counting Pattern Branch
   { 
     id: 'c1',
     data: { label: '1A.1 Single Value Counter' },
@@ -61,8 +56,6 @@ const initialNodes: Node[] = [
     position: { x: 80, y: 520 },
     className: 'subpattern-node'
   },
-
-  // Frequency Branch
   { 
     id: 'f1',
     data: { label: '1B.1 Frequency Map' },
@@ -81,8 +74,6 @@ const initialNodes: Node[] = [
     position: { x: 320, y: 580 },
     className: 'subpattern-node'
   },
-
-  // Window Branch
   { 
     id: 'w1',
     data: { label: '1C.1 Fixed Window' },
@@ -101,8 +92,6 @@ const initialNodes: Node[] = [
     position: { x: 450, y: 550 },
     className: 'subpattern-node'
   },
-
-  // Next Greater Branch
   { 
     id: 'n1',
     data: { label: '2A.1 Next Greater Element' },
@@ -121,8 +110,6 @@ const initialNodes: Node[] = [
     position: { x: 820, y: 580 },
     className: 'subpattern-node'
   },
-
-  // Window Operations Branch
   { 
     id: 'm1',
     data: { label: '2B.1 Sliding Window Max' },
@@ -143,8 +130,7 @@ const initialNodes: Node[] = [
   },
 ];
 
-const initialEdges: Edge[] = [
-  // Pattern Connections with animated edges and markers
+const initialEdges: RoadmapEdgeType[] = [
   { 
     id: 'e-start-p1', 
     source: 'start', 
@@ -169,8 +155,6 @@ const initialEdges: Edge[] = [
       color: '#9ca3af',
     },
   },
-
-  // Counting Pattern Paths with markers
   { 
     id: 'e-p1-c1', 
     source: 'p1', 
@@ -270,8 +254,6 @@ const initialEdges: Edge[] = [
       color: '#9ca3af',
     },
   },
-
-  // Monotonic Pattern Paths with markers
   { 
     id: 'e-p2-n1', 
     source: 'p2', 
@@ -338,8 +320,6 @@ const initialEdges: Edge[] = [
       color: '#9ca3af',
     },
   },
-
-  // Cross Pattern Learning with markers
   { 
     id: 'e-w2-m1', 
     source: 'w2', 
@@ -364,8 +344,6 @@ const initialEdges: Edge[] = [
     },
     style: { stroke: '#9ca3af' },
   },
-
-  // Parallel Learning Paths with markers
   { 
     id: 'e-c2-f2', 
     source: 'c2', 
