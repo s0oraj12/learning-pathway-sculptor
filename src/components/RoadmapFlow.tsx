@@ -373,10 +373,10 @@ const initialEdges: RoadmapEdgeType[] = [
 
 const RoadmapScene = () => {
   return (
-    <group>
+    <>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
-      <Stars radius={100} depth={50} count={5000} factor={4} />
+      <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
       <ParticleField />
       
       {initialNodes.map((node) => (
@@ -403,7 +403,7 @@ const RoadmapScene = () => {
         minDistance={5}
         maxDistance={20}
       />
-    </group>
+    </>
   );
 };
 
@@ -427,11 +427,16 @@ const RoadmapFlowInner = () => {
           gl={{ 
             antialias: true,
             alpha: true,
-            preserveDrawingBuffer: true
+            preserveDrawingBuffer: true,
+            powerPreference: "high-performance"
           }}
           dpr={[1, 2]}
+          shadows
           legacy={false}
           flat={true}
+          onCreated={({ gl }) => {
+            gl.setClearColor('#00000000', 0);
+          }}
         >
           <RoadmapScene />
         </Canvas>

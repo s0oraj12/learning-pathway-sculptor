@@ -31,6 +31,7 @@ export const RoadmapNode: React.FC<RoadmapNodeProps> = ({ node, type }) => {
         center
         distanceFactor={15}
         occlude
+        transform
       >
         <div className="bg-white/90 backdrop-blur-sm p-2 rounded-lg shadow-lg">
           <h3 className="text-sm font-bold">{node.data.label}</h3>
