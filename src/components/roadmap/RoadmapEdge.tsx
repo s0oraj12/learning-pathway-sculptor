@@ -1,9 +1,10 @@
 import { Line } from '@react-three/drei';
-import { Edge } from '@xyflow/react';
+import { RoadmapEdge as RoadmapEdgeType, RoadmapNode } from '../../types/roadmap';
+import * as THREE from 'three';
 
 interface RoadmapEdgeProps {
-  edge: Edge;
-  nodes: any[];
+  edge: RoadmapEdgeType;
+  nodes: RoadmapNode[];
 }
 
 export const RoadmapEdge: React.FC<RoadmapEdgeProps> = ({ edge, nodes }) => {
@@ -12,8 +13,8 @@ export const RoadmapEdge: React.FC<RoadmapEdgeProps> = ({ edge, nodes }) => {
 
   if (!sourceNode || !targetNode) return null;
 
-  const start = [sourceNode.position.x / 100, -sourceNode.position.y / 100, 0];
-  const end = [targetNode.position.x / 100, -targetNode.position.y / 100, 0];
+  const start = new THREE.Vector3(sourceNode.position.x / 100, -sourceNode.position.y / 100, 0);
+  const end = new THREE.Vector3(targetNode.position.x / 100, -targetNode.position.y / 100, 0);
 
   return (
     <Line

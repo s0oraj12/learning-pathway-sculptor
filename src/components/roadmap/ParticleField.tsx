@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 export const ParticleField = () => {
-  const points = useRef();
+  const points = useRef<THREE.Points>(null);
   
   const particles = useMemo(() => {
     const temp = [];
@@ -22,15 +22,17 @@ export const ParticleField = () => {
   }, []);
 
   useFrame((state) => {
-    points.current.rotation.x = state.clock.getElapsedTime() * 0.02;
-    points.current.rotation.y = state.clock.getElapsedTime() * 0.03;
+    if (points.current) {
+      points.current.rotation.x = state.clock.getElapsedTime() * 0.02;
+      points.current.rotation.y = state.clock.getElapsedTime() * 0.03;
+    }
   });
 
   return (
     <points ref={points}>
       <bufferGeometry>
         <bufferAttribute
-          attachObject={['attributes', 'position']}
+          attach="attributes-position"
           count={particles.length / 3}
           array={particles}
           itemSize={3}

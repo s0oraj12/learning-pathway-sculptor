@@ -1,15 +1,16 @@
 import { useRef } from 'react';
 import { useSpring, animated } from '@react-spring/three';
 import { Html } from '@react-three/drei';
-import { Node } from '@xyflow/react';
+import { RoadmapNode as RoadmapNodeType } from '../../types/roadmap';
+import * as THREE from 'three';
 
 interface RoadmapNodeProps {
-  node: Node;
+  node: RoadmapNodeType;
   type: 'start' | 'pattern' | 'subpattern';
 }
 
 export const RoadmapNode: React.FC<RoadmapNodeProps> = ({ node, type }) => {
-  const meshRef = useRef();
+  const meshRef = useRef<THREE.Mesh>();
   const [spring] = useSpring(() => ({
     scale: [1, 1, 1],
     position: [node.position.x / 100, -node.position.y / 100, 0],
@@ -25,8 +26,8 @@ export const RoadmapNode: React.FC<RoadmapNodeProps> = ({ node, type }) => {
   return (
     <animated.mesh
       ref={meshRef}
-      position={spring.position}
-      scale={spring.scale}
+      position={spring.position as any}
+      scale={spring.scale as any}
     >
       <sphereGeometry args={[0.3, 32, 32]} />
       <meshStandardMaterial

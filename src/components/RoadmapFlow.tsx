@@ -11,11 +11,13 @@ import {
   MiniMap,
   Background,
   MarkerType,
+  ReactFlowProvider
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { ParticleField } from './roadmap/ParticleField';
 import { RoadmapNode } from './roadmap/RoadmapNode';
 import { RoadmapEdge } from './roadmap/RoadmapEdge';
+import { RoadmapNode as RoadmapNodeType, RoadmapEdge as RoadmapEdgeType } from '../types/roadmap';
 
 const initialNodes: Node[] = [
   // Start Node
@@ -390,7 +392,7 @@ const initialEdges: Edge[] = [
   },
 ];
 
-const RoadmapFlow = () => {
+const RoadmapFlowInner = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -441,6 +443,14 @@ const RoadmapFlow = () => {
         <MiniMap className="bg-gray-800/80 border-gray-700" />
       </div>
     </motion.div>
+  );
+};
+
+const RoadmapFlow = () => {
+  return (
+    <ReactFlowProvider>
+      <RoadmapFlowInner />
+    </ReactFlowProvider>
   );
 };
 
