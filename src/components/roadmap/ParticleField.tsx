@@ -1,26 +1,22 @@
-import { useRef, useMemo } from 'react';
+import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 export const ParticleField = () => {
   const points = useRef<THREE.Points>(null);
   
-  const positions = useMemo(() => {
-    const particleCount = 1000;
-    const positions = new Float32Array(particleCount * 3);
-    
-    for (let i = 0; i < particleCount; i++) {
-      const radius = 20;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.random() * Math.PI * 2;
-      
-      positions[i * 3] = radius * Math.sin(theta) * Math.cos(phi);
-      positions[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(phi);
-      positions[i * 3 + 2] = radius * Math.cos(theta);
-    }
-    
-    return positions;
-  }, []);
+  const geometry = new THREE.BufferGeometry();
+  const vertices = [];
+  const particleCount = 1000;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const x = (Math.random() - 0.5) * 20;
+    const y = (Math.random() - 0.5) * 20;
+    const z = (Math.random() - 0.5) * 20;
+    vertices.push(x, y, z);
+  }
+  
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
 
   useFrame(() => {
     if (points.current) {
@@ -31,14 +27,7 @@ export const ParticleField = () => {
 
   return (
     <points ref={points}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={positions.length / 3}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
+      <primitive object={geometry} />
       <pointsMaterial
         size={0.05}
         color="#ffffff"

@@ -102,14 +102,14 @@
 
 @layer components {
   .start-node {
-    @apply bg-gradient-to-br from-blue-500 to-blue-600 text-white font-semibold rounded-lg border-2 border-blue-400 shadow-lg;
+    @apply bg-gradient-to-br from-blue-500/90 to-blue-600/90 text-white font-semibold rounded-lg border-2 border-blue-400/50 shadow-lg backdrop-blur-sm;
   }
 
   .pattern-node {
-    @apply bg-gradient-to-br from-indigo-500 to-indigo-600 text-white font-medium rounded-lg border-2 border-indigo-400 shadow-lg;
+    @apply bg-gradient-to-br from-indigo-500/90 to-indigo-600/90 text-white font-medium rounded-lg border-2 border-indigo-400/50 shadow-lg backdrop-blur-sm;
   }
 
   .subpattern-node {
-    @apply bg-gradient-to-br from-cyan-500 to-cyan-600 text-white font-medium rounded-lg border-2 border-cyan-400 shadow-lg;
+    @apply bg-gradient-to-br from-cyan-500/90 to-cyan-600/90 text-white font-medium rounded-lg border-2 border-cyan-400/50 shadow-lg backdrop-blur-sm;
   }
 }

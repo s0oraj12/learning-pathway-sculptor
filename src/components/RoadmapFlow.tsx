@@ -33,13 +33,16 @@ const RoadmapFlowInner = () => {
     >
       {/* 3D Background Layer */}
       <div className="absolute inset-0 z-0">
-        <Canvas>
+        <Canvas
+          camera={{ position: [0, 0, 15], fov: 75 }}
+          style={{ background: 'transparent' }}
+        >
           <SceneSetup />
           <ParticleField />
         </Canvas>
       </div>
 
-      {/* React Flow Layer */}
+      {/* React Flow Layer with transparent background */}
       <div className="absolute inset-0 z-10">
         <ReactFlow
           nodes={nodes}
@@ -49,8 +52,9 @@ const RoadmapFlowInner = () => {
           onConnect={onConnect}
           fitView
           attributionPosition="bottom-right"
+          className="bg-transparent"
         >
-          <Background />
+          <Background className="bg-transparent" />
           <Controls className="bg-gray-800/80 border-gray-700" />
           <MiniMap className="bg-gray-800/80 border-gray-700" />
         </ReactFlow>
