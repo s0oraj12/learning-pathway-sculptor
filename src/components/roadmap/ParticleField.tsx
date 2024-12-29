@@ -5,8 +5,7 @@ import * as THREE from 'three';
 export const ParticleField = () => {
   const points = useRef<THREE.Points>(null);
   
-  // Create particles using useMemo to prevent recreation on every render
-  const particles = useMemo(() => {
+  const positions = useMemo(() => {
     const particleCount = 1000;
     const positions = new Float32Array(particleCount * 3);
     
@@ -19,21 +18,8 @@ export const ParticleField = () => {
       positions[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(phi);
       positions[i * 3 + 2] = radius * Math.cos(theta);
     }
-
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     
-    return geometry;
-  }, []);
-
-  const material = useMemo(() => {
-    return new THREE.PointsMaterial({
-      size: 0.05,
-      color: '#ffffff',
-      transparent: true,
-      opacity: 0.6,
-      sizeAttenuation: true
-    });
+    return positions;
   }, []);
 
   useFrame(() => {
@@ -45,8 +31,21 @@ export const ParticleField = () => {
 
   return (
     <points ref={points}>
-      <bufferGeometry attach="geometry" {...particles} />
-      <pointsMaterial attach="material" {...material} />
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={positions.length / 3}
+          array={positions}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.05}
+        color="#ffffff"
+        transparent
+        opacity={0.6}
+        sizeAttenuation={true}
+      />
     </points>
   );
 };
