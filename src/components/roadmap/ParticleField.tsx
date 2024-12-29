@@ -23,15 +23,17 @@ export const ParticleField = () => {
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     
-    const material = new THREE.PointsMaterial({
+    return geometry;
+  }, []);
+
+  const material = useMemo(() => {
+    return new THREE.PointsMaterial({
       size: 0.05,
       color: '#ffffff',
       transparent: true,
       opacity: 0.6,
       sizeAttenuation: true
     });
-
-    return { geometry, material };
   }, []);
 
   useFrame(() => {
@@ -43,8 +45,8 @@ export const ParticleField = () => {
 
   return (
     <points ref={points}>
-      <primitive object={particles.geometry} attach="geometry" />
-      <primitive object={particles.material} attach="material" />
+      <bufferGeometry attach="geometry" {...particles} />
+      <pointsMaterial attach="material" {...material} />
     </points>
   );
 };
