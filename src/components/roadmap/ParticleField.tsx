@@ -7,8 +7,8 @@ export const ParticleField = () => {
   
   const particles = useMemo(() => {
     const temp = [];
-    for (let i = 0; i < 500; i++) {
-      const radius = 15;
+    for (let i = 0; i < 1000; i++) {
+      const radius = 20;
       const theta = THREE.MathUtils.randFloatSpread(360);
       const phi = THREE.MathUtils.randFloatSpread(360);
       
@@ -23,8 +23,8 @@ export const ParticleField = () => {
 
   useFrame((state) => {
     if (points.current) {
-      points.current.rotation.x = state.clock.getElapsedTime() * 0.02;
-      points.current.rotation.y = state.clock.getElapsedTime() * 0.03;
+      points.current.rotation.x = state.clock.getElapsedTime() * 0.05;
+      points.current.rotation.y = state.clock.getElapsedTime() * 0.075;
     }
   });
 
@@ -39,10 +39,10 @@ export const ParticleField = () => {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.02}
-        color="#4a5568"
+        size={0.05}
+        color="#ffffff"
         transparent
-        opacity={0.3}
+        opacity={0.6}
         sizeAttenuation
       />
     </points>

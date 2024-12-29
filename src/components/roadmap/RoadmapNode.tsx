@@ -10,7 +10,7 @@ interface RoadmapNodeProps {
 }
 
 export const RoadmapNode: React.FC<RoadmapNodeProps> = ({ node, type }) => {
-  const meshRef = useRef<THREE.Mesh>();
+  const meshRef = useRef<THREE.Mesh>(null);
   const [spring] = useSpring(() => ({
     scale: [1, 1, 1],
     position: [node.position.x / 100, -node.position.y / 100, 0],
