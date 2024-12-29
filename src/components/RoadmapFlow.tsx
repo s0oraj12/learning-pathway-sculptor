@@ -1,18 +1,21 @@
 import { useCallback } from 'react';
 import { motion } from 'framer-motion';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Stars } from '@react-three/drei';
 import {
   ReactFlow,
-  MiniMap,
-  Controls,
-  Background,
   useNodesState,
   useEdgesState,
   addEdge,
-  Node,
-  Edge,
+  Controls,
+  MiniMap,
+  Background,
   MarkerType,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import { ParticleField } from './roadmap/ParticleField';
+import { RoadmapNode } from './roadmap/RoadmapNode';
+import { RoadmapEdge } from './roadmap/RoadmapEdge';
 
 const initialNodes: Node[] = [
   // Start Node
@@ -394,26 +397,49 @@ const RoadmapFlow = () => {
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="rounded-xl overflow-hidden border border-gray-700 bg-gray-800/50 backdrop-blur-sm"
+      className="rounded-xl overflow-hidden border border-gray-700 bg-gray-900/90 backdrop-blur-sm"
       style={{ width: '100%', height: '800px' }}
     >
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        fitView
-        className="bg-gray-900/50"
-      >
+      <Canvas camera={{ position: [0, 0, 10] }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} />
+        <Stars radius={100} depth={50} count={5000} factor={4} />
+        <ParticleField />
+        
+        {nodes.map((node) => (
+          <RoadmapNode
+            key={node.id}
+            node={node}
+            type={
+              node.className === 'start-node'
+                ? 'start'
+                : node.className === 'pattern-node'
+                ? 'pattern'
+                : 'subpattern'
+            }
+          />
+        ))}
+        
+        {edges.map((edge) => (
+          <RoadmapEdge key={edge.id} edge={edge} nodes={nodes} />
+        ))}
+
+        <OrbitControls
+          enablePan={false}
+          enableZoom={true}
+          minDistance={5}
+          maxDistance={20}
+        />
+      </Canvas>
+
+      <div className="absolute bottom-4 right-4">
         <Controls className="bg-gray-800/80 border-gray-700" />
         <MiniMap className="bg-gray-800/80 border-gray-700" />
-        <Background color="#4a5568" gap={16} size={1} />
-      </ReactFlow>
+      </div>
     </motion.div>
   );
 };
