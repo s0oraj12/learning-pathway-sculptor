@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { motion } from 'framer-motion';
+import { Canvas } from '@react-three/fiber';
 import {
   ReactFlow,
   useNodesState,
@@ -13,6 +14,8 @@ import {
 import '@xyflow/react/dist/style.css';
 
 import { initialNodes, initialEdges } from './roadmap/initial-elements';
+import { SceneSetup } from './roadmap/SceneSetup';
+import { ParticleField } from './roadmap/ParticleField';
 
 const RoadmapFlowInner = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -25,22 +28,33 @@ const RoadmapFlowInner = () => {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="rounded-xl overflow-hidden border border-gray-700 bg-gray-900/90 backdrop-blur-sm"
+      className="rounded-xl overflow-hidden border border-gray-700 bg-gray-900/90 backdrop-blur-sm relative"
       style={{ width: '100%', height: '800px' }}
     >
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        fitView
-        attributionPosition="bottom-right"
-      >
-        <Background />
-        <Controls className="bg-gray-800/80 border-gray-700" />
-        <MiniMap className="bg-gray-800/80 border-gray-700" />
-      </ReactFlow>
+      {/* 3D Background Layer */}
+      <div className="absolute inset-0 z-0">
+        <Canvas>
+          <SceneSetup />
+          <ParticleField />
+        </Canvas>
+      </div>
+
+      {/* React Flow Layer */}
+      <div className="absolute inset-0 z-10">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          fitView
+          attributionPosition="bottom-right"
+        >
+          <Background />
+          <Controls className="bg-gray-800/80 border-gray-700" />
+          <MiniMap className="bg-gray-800/80 border-gray-700" />
+        </ReactFlow>
+      </div>
     </motion.div>
   );
 };
