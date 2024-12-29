@@ -20,6 +20,7 @@ export const RoadmapEdge: React.FC<RoadmapEdgeProps> = ({ edge, nodes }) => {
     <Line
       points={[start, end]}
       color="#4a5568"
+      lineWidth={1}
       opacity={0.3}
       transparent
     />

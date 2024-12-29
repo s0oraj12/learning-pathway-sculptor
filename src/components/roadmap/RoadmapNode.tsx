@@ -11,9 +11,16 @@ interface RoadmapNodeProps {
 
 export const RoadmapNode: React.FC<RoadmapNodeProps> = ({ node, type }) => {
   const meshRef = useRef<THREE.Mesh>(null);
-  const [spring] = useSpring(() => ({
-    scale: [1, 1, 1],
-    position: [node.position.x / 100, -node.position.y / 100, 0],
+  
+  const [springs] = useSpring(() => ({
+    from: {
+      scale: [0, 0, 0],
+      position: [0, 0, 0],
+    },
+    to: {
+      scale: [1, 1, 1],
+      position: [node.position.x / 100, -node.position.y / 100, 0],
+    },
     config: { mass: 1, tension: 280, friction: 60 },
   }));
 
@@ -26,8 +33,8 @@ export const RoadmapNode: React.FC<RoadmapNodeProps> = ({ node, type }) => {
   return (
     <animated.mesh
       ref={meshRef}
-      position={spring.position as any}
-      scale={spring.scale as any}
+      position={springs.position}
+      scale={springs.scale}
     >
       <sphereGeometry args={[0.3, 32, 32]} />
       <meshStandardMaterial
