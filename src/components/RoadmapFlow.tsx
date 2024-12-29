@@ -423,9 +423,15 @@ const RoadmapFlowInner = () => {
     >
       <ErrorBoundary>
         <Canvas
-          camera={{ position: [0, 0, 10] }}
-          gl={{ antialias: true }}
+          camera={{ position: [0, 0, 10], fov: 75 }}
+          gl={{ 
+            antialias: true,
+            alpha: true,
+            preserveDrawingBuffer: true
+          }}
           dpr={[1, 2]}
+          legacy={false}
+          flat={true}
         >
           <RoadmapScene />
         </Canvas>

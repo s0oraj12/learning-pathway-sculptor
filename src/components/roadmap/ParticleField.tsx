@@ -7,6 +7,7 @@ export const ParticleField = () => {
   
   const particleCount = 1000;
   const positions = new Float32Array(particleCount * 3);
+  const geometry = new THREE.BufferGeometry();
   
   for (let i = 0; i < particleCount; i++) {
     const radius = 20;
@@ -18,7 +19,9 @@ export const ParticleField = () => {
     positions[i * 3 + 2] = radius * Math.cos(theta);
   }
 
-  useFrame((state) => {
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+  useFrame(() => {
     if (points.current) {
       points.current.rotation.x += 0.001;
       points.current.rotation.y += 0.001;
@@ -26,15 +29,7 @@ export const ParticleField = () => {
   });
 
   return (
-    <points ref={points}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={particleCount}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
+    <points ref={points} geometry={geometry}>
       <pointsMaterial
         size={0.05}
         color="#ffffff"

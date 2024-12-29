@@ -27,7 +27,11 @@ export const RoadmapNode: React.FC<RoadmapNodeProps> = ({ node, type }) => {
         roughness={0.5}
         metalness={0.2}
       />
-      <Html distanceFactor={15}>
+      <Html
+        center
+        distanceFactor={15}
+        occlude
+      >
         <div className="bg-white/90 backdrop-blur-sm p-2 rounded-lg shadow-lg">
           <h3 className="text-sm font-bold">{node.data.label}</h3>
         </div>
