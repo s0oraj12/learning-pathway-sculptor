@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { useSpring, animated } from '@react-spring/three';
 import { Html } from '@react-three/drei';
 import { RoadmapNode as RoadmapNodeType } from '../../types/roadmap';
 import * as THREE from 'three';
@@ -12,29 +11,18 @@ interface RoadmapNodeProps {
 export const RoadmapNode: React.FC<RoadmapNodeProps> = ({ node, type }) => {
   const meshRef = useRef<THREE.Mesh>(null);
 
-  const { scale, position } = useSpring({
-    from: {
-      scale: [0, 0, 0] as [number, number, number],
-      position: [0, 0, 0] as [number, number, number],
-    },
-    to: {
-      scale: [1, 1, 1] as [number, number, number],
-      position: [node.position.x / 100, -node.position.y / 100, 0] as [number, number, number],
-    },
-    config: { mass: 1, tension: 280, friction: 60 },
-  });
-
   const colors = {
     start: '#3B82F6',
     pattern: '#8B5CF6',
     subpattern: '#06B6D4'
   };
 
+  const position = new THREE.Vector3(node.position.x / 100, -node.position.y / 100, 0);
+
   return (
-    <animated.mesh
+    <mesh
       ref={meshRef}
-      position={position.to((x, y, z) => [x, y, z] as [number, number, number])}
-      scale={scale.to((x, y, z) => [x, y, z] as [number, number, number])}
+      position={position}
     >
       <sphereGeometry args={[0.3, 32, 32]} />
       <meshStandardMaterial
@@ -47,6 +35,6 @@ export const RoadmapNode: React.FC<RoadmapNodeProps> = ({ node, type }) => {
           <h3 className="text-sm font-bold">{node.data.label}</h3>
         </div>
       </Html>
-    </animated.mesh>
+    </mesh>
   );
 };
