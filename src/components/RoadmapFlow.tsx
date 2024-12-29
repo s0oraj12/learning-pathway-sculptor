@@ -18,6 +18,7 @@ import { ParticleField } from './roadmap/ParticleField';
 import { RoadmapNode } from './roadmap/RoadmapNode';
 import { RoadmapEdge } from './roadmap/RoadmapEdge';
 import { RoadmapNode as RoadmapNodeType, RoadmapEdge as RoadmapEdgeType } from '../types/roadmap';
+import { ErrorBoundary } from './roadmap/ErrorBoundary';
 
 const initialNodes: RoadmapNodeType[] = [
   { 
@@ -370,6 +371,42 @@ const initialEdges: RoadmapEdgeType[] = [
   },
 ];
 
+const RoadmapScene = () => {
+  return (
+    <>
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} />
+      <Stars radius={100} depth={50} count={5000} factor={4} />
+      <ParticleField />
+      
+      {initialNodes.map((node) => (
+        <RoadmapNode
+          key={node.id}
+          node={node}
+          type={
+            node.className === 'start-node'
+              ? 'start'
+              : node.className === 'pattern-node'
+              ? 'pattern'
+              : 'subpattern'
+          }
+        />
+      ))}
+      
+      {initialEdges.map((edge) => (
+        <RoadmapEdge key={edge.id} edge={edge} nodes={initialNodes} />
+      ))}
+
+      <OrbitControls
+        enablePan={false}
+        enableZoom={true}
+        minDistance={5}
+        maxDistance={20}
+      />
+    </>
+  );
+};
+
 const RoadmapFlowInner = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -384,37 +421,15 @@ const RoadmapFlowInner = () => {
       className="rounded-xl overflow-hidden border border-gray-700 bg-gray-900/90 backdrop-blur-sm"
       style={{ width: '100%', height: '800px' }}
     >
-      <Canvas camera={{ position: [0, 0, 10] }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
-        <Stars radius={100} depth={50} count={5000} factor={4} />
-        <ParticleField />
-        
-        {nodes.map((node) => (
-          <RoadmapNode
-            key={node.id}
-            node={node}
-            type={
-              node.className === 'start-node'
-                ? 'start'
-                : node.className === 'pattern-node'
-                ? 'pattern'
-                : 'subpattern'
-            }
-          />
-        ))}
-        
-        {edges.map((edge) => (
-          <RoadmapEdge key={edge.id} edge={edge} nodes={nodes} />
-        ))}
-
-        <OrbitControls
-          enablePan={false}
-          enableZoom={true}
-          minDistance={5}
-          maxDistance={20}
-        />
-      </Canvas>
+      <ErrorBoundary>
+        <Canvas
+          camera={{ position: [0, 0, 10] }}
+          gl={{ antialias: true }}
+          dpr={[1, 2]}
+        >
+          <RoadmapScene />
+        </Canvas>
+      </ErrorBoundary>
 
       <div className="absolute bottom-4 right-4">
         <Controls className="bg-gray-800/80 border-gray-700" />
