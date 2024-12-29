@@ -20,10 +20,7 @@ export const RoadmapNode: React.FC<RoadmapNodeProps> = ({ node, type }) => {
   const position = new THREE.Vector3(node.position.x / 100, -node.position.y / 100, 0);
 
   return (
-    <mesh
-      ref={meshRef}
-      position={position}
-    >
+    <mesh ref={meshRef} position={position}>
       <sphereGeometry args={[0.3, 32, 32]} />
       <meshStandardMaterial
         color={colors[type]}

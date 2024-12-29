@@ -10,8 +10,8 @@ export const ParticleField = () => {
   
   for (let i = 0; i < particleCount; i++) {
     const radius = 20;
-    const theta = THREE.MathUtils.randFloatSpread(360);
-    const phi = THREE.MathUtils.randFloatSpread(360);
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.random() * Math.PI * 2;
     
     positions[i * 3] = radius * Math.sin(theta) * Math.cos(phi);
     positions[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(phi);
@@ -20,8 +20,8 @@ export const ParticleField = () => {
 
   useFrame((state) => {
     if (points.current) {
-      points.current.rotation.x = state.clock.getElapsedTime() * 0.05;
-      points.current.rotation.y = state.clock.getElapsedTime() * 0.075;
+      points.current.rotation.x += 0.001;
+      points.current.rotation.y += 0.001;
     }
   });
 

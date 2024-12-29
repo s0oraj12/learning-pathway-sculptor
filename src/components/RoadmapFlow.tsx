@@ -373,7 +373,7 @@ const initialEdges: RoadmapEdgeType[] = [
 
 const RoadmapScene = () => {
   return (
-    <>
+    <group>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
       <Stars radius={100} depth={50} count={5000} factor={4} />
@@ -403,7 +403,7 @@ const RoadmapScene = () => {
         minDistance={5}
         maxDistance={20}
       />
-    </>
+    </group>
   );
 };
 
